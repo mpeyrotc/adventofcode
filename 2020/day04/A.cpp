@@ -7,9 +7,7 @@ using namespace std;
 
 int main()
 {
-    regex passportRegex{ string("(byr:|iyr:|eyr:|hgt:|hcl:|ecl:|pid:[^\\s]+)") +
-
-                                "\\s+\\n" };
+    regex passportRegex{ string("((byr|iyr|eyr|hgt|hcl|ecl|pid):[\\w#]+)") };
 
     int validPassports{ 0 };
     string line;
