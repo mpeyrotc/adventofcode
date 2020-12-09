@@ -1,15 +1,13 @@
 #include <iostream>
 #include <string>
 #include <list>
-#include <unordered_set>
+#include "Helpers.h"
 
-using namespace std;
-
-bool TwoSumA(unordered_set<long long> candidateNumbers, long long target)
+bool TwoSum(unordered_set<ll> candidateNumbers, ll target)
 {
-    for (long long number : candidateNumbers)
+    for (ll number : candidateNumbers)
     {
-        if (candidateNumbers.count(abs(target - number)))
+        if (ll other{ abs(target - number) }; candidateNumbers.count(other) && other != number)
         {
             return true;
         }
@@ -18,12 +16,12 @@ bool TwoSumA(unordered_set<long long> candidateNumbers, long long target)
     return false;
 }
 
-int main2()
+int main()
 {
     int preambleCount{ 0 };
 
-    list<long long> pastNumbersList;
-    unordered_set<long long> pastNumbersSet;
+    list<ll> pastNumbersList;
+    unordered_set<ll> pastNumbersSet;
 
     string line;
     while (getline(cin, line))
@@ -38,8 +36,8 @@ int main2()
             continue;
         }
 
-        long long currentNumber{ stoll(line) };
-        if (!TwoSumA(pastNumbersSet, currentNumber))
+        ll currentNumber{ stoll(line) };
+        if (!TwoSum(pastNumbersSet, currentNumber))
         {
             cout << currentNumber << endl;
         }
