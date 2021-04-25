@@ -16,7 +16,7 @@ bool TwoSum(unordered_set<ll> candidateNumbers, ll target)
     return false;
 }
 
-int main()
+int main2()
 {
     int preambleCount{ 0 };
 

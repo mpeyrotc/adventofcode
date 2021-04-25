@@ -5,7 +5,7 @@
 
 using namespace std;
 
-int main()
+int main2()
 {
     regex passportRegex{ string("((byr|iyr|eyr|hgt|hcl|ecl|pid):[\\w#]+)") };
 

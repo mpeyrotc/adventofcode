@@ -2,6 +2,7 @@
 #include <string>
 #include <list>
 #include "Helpers.h"
+#include <algorithm>
 
 int main()
 {
@@ -14,7 +15,7 @@ int main()
     size_t elementToRemove{ 0 };
     while (getline(cin, line))
     {
-        if (preambleCount < 25)
+        if (preambleCount < 5)
         {
             pastNumbers.push_back(stoll(line));
             pastNumbersSet.insert(stoll(line));
@@ -38,34 +39,17 @@ int main()
     }
 
     ll lastNumber{ pastNumbers.at(pastNumbers.size() - 1) };
-    for (size_t i{ 0 }; i < pastNumbers.size(); ++i)
-    {
-        ll sum{ pastNumbers.at(i) };
-        ll min{ sum };
-        ll max{ sum };
-
-        for (size_t j{ i + 1 }; j < pastNumbers.size(); ++j)
-        {
-            if (pastNumbers.at(j) < min)
-            {
-                min = pastNumbers.at(j);
-            }
-
-            if (pastNumbers.at(j) > max)
-            {
-                max = pastNumbers.at(j);
-            }
-            
-            sum += pastNumbers.at(j);
-            if (sum == lastNumber)
-            {
-                cout << min + max << endl;
-
-            }
-            else if (sum > lastNumber)
-            {
-                break;
-            }
+    ll cur{ 0 };
+    for (int e = 0, b = 0; e < pastNumbers.size(); e++) {
+        cur += pastNumbers[e];
+        while (cur > lastNumber) {
+            cur -= pastNumbers[b];
+            b++;
+        }
+        if (cur == lastNumber) {
+            sort(pastNumbers.begin() + b, pastNumbers.begin() + e);
+            cout << pastNumbers[b] + pastNumbers[e] << endl;
+            break;
         }
     }
 
